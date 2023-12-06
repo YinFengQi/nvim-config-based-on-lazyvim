@@ -5,3 +5,7 @@
 local keymap = vim.keymap
 
 keymap.set("i", "jj", "<Esc>")
+keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "no highlight" })
+keymap.set("i", "<c-u>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>")
+keymap.set({ "i", "s" }, "<c-n>", "<Plug>luasnip-next-choice")
+keymap.set({ "i", "s" }, "<c-p>", "<Plug>luasnip-prev-choice")
