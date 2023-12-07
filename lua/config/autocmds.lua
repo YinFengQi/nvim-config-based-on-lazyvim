@@ -3,4 +3,4 @@
 -- Add any additional autocmds here
 
 vim.cmd([[set guifont=JetBrainsMono\ Nerd\ Font:h21]])
-vim.cmd([[set conceallevel=0]])
+-- vim.cmd([[set conceallevel=0]])

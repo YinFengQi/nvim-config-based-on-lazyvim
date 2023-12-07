@@ -10,6 +10,7 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local tex = require("util.latex")
+
 local rec_ls
 rec_ls = function()
   return sn(nil, {
@@ -62,10 +63,10 @@ return {
     { trig = "beg", wordTrig = false, snippetType = "autosnippet" },
     fmta(
       [[
-  \begin{<>}
+\begin{<>}
   <>
-  \end{<>}
-  ]],
+\end{<>}
+]],
       {
         i(1),
         i(0),
@@ -85,27 +86,15 @@ return {
       { i(1), i(0) }
     )
   ),
-  s(
-    { trig = "(mk)|(km)", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
-    fmta([[$<>$<>]], { i(1), i(0) })
-  ),
 
-  s(
-    { trig = "ov", snippetType = "autosnippet" },
-    c(1, {
-      sn(nil, { t("\\odv{"), i(1), t("}{"), i(2), t("}") }),
-      sn(nil, { t("\\odv[order={"), i(3), t("}]{"), i(1), t("}{"), i(2), t("}") }),
-    }),
-    { condition = tex.in_mathzone }
-  ),
-  s(
-    { trig = "(%d+)/", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 100 },
-    fmta("\\frac{<>}{<>}", {
-      f(function(_, snip)
-        return snip.captures[1]
-      end),
-      i(1),
-    }),
-    { condition = tex.in_mathzone }
-  ),
+  s({ trig = "mk", wordTrig = false, regTrig = true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(0) })),
+  s({ trig = "km", wordTrig = false, regTrig = true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(0) })),
+
+  s("ls", {
+    t({ "\\begin{itemize}", "\t\\item " }),
+    i(1),
+    d(2, rec_ls, {}),
+    t({ "", "\\end{itemize}" }),
+    i(0),
+  }),
 }
