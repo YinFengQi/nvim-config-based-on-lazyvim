@@ -10,7 +10,6 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local tex = require("util.latex")
-
 local rec_ls
 rec_ls = function()
   return sn(nil, {
@@ -56,11 +55,12 @@ return {
         i(4),
         i(0),
       }
-    )
+    ),
+    { condition = line_begin }
   ),
 
   s(
-    { trig = "beg", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "beg", wordTrig = true, snippetType = "autosnippet" },
     fmta(
       [[
 \begin{<>}
@@ -72,11 +72,12 @@ return {
         i(0),
         rep(1),
       }
-    )
+    ),
+    { condition = line_begin }
   ),
 
   s(
-    { trig = "eqt", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "eqt", wordTrig = true, snippetType = "autosnippet" },
     fmta(
       [[
 \begin{equation}
@@ -84,17 +85,17 @@ return {
 \end{equation}<>
 ]],
       { i(1), i(0) }
-    )
+    ),
+    { condition = line_begin }
   ),
 
-  s({ trig = "mk", wordTrig = false, regTrig = true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(0) })),
-  s({ trig = "km", wordTrig = false, regTrig = true, snippetType = "autosnippet" }, fmta([[$<>$<>]], { i(1), i(0) })),
+  s({ trig = "(mk|km)", snippetType = "autosnippet", trigEngine = "ecma" }, fmta([[$<>$<>]], { i(1), i(0) })),
 
-  s("ls", {
+  s("list", {
     t({ "\\begin{itemize}", "\t\\item " }),
     i(1),
     d(2, rec_ls, {}),
     t({ "", "\\end{itemize}" }),
     i(0),
-  }),
+  }, { show_condition = tex.in_text }),
 }

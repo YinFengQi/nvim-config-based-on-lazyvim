@@ -16,7 +16,7 @@ return {
     config = function()
       require("luasnip").config.set_config({
         enable_autosnippets = true,
-        store_selection_keys = "``",
+        store_selection_keys = "`",
       })
       require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnip" } })
 

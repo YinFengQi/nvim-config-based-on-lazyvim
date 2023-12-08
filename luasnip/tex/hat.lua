@@ -30,10 +30,29 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "(%\\)(%a+)hat", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\hat{\\<>}", {
+    { trig = "(%\\%a+)hat", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\hat{<>}", {
       f(function(_, snip)
-        return snip.captures[2]
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
+    { trig = "(%a)dot", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\dot{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "(%\\%a+)dot", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\dot{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
       end),
     }),
     { condition = tex.in_mathzone }
@@ -49,10 +68,10 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "(%\\)(%a+)hat", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\<>^{\\dagger}", {
+    { trig = "(%\\%a+)dag", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("<>^{\\dagger}", {
       f(function(_, snip)
-        return snip.captures[2]
+        return snip.captures[1]
       end),
     }),
     { condition = tex.in_mathzone }
@@ -68,10 +87,29 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "(%\\)(%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\vec{\\<>}", {
+    { trig = "(%\\%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\vec{<>}", {
       f(function(_, snip)
-        return snip.captures[2]
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
+    { trig = "(%a)bar", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\bar{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "(%\\%a+)bar", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\bar{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
       end),
     }),
     { condition = tex.in_mathzone }
@@ -84,12 +122,28 @@ return {
   ),
   s(
     { trig = "(%a+)hsq", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 1500 },
-    f(function(_, snip)
-      return sn(c(1, {
-        sn(nil, { t("\\sqrt{"), t(snip.captures[1]), i(1) }),
-        sn(nil, { t("test"), i(1) }),
-      }))
-    end),
+    d(1, function(_, snip)
+      return sn(
+        nil,
+        c(1, {
+          sn(nil, { t("\\sqrt{"), t(snip.captures[1]), i(1), t("}"), i(0) }),
+          sn(nil, { t("\\sqrt["), i(2), t("]{"), t(snip.captures[1]), i(1), t("}"), i(0) }),
+        })
+      )
+    end, {}),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "(%\\%a+)hsq", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    d(1, function(_, snip)
+      return sn(
+        nil,
+        c(1, {
+          sn(nil, { t("\\sqrt{"), t(snip.captures[1]), t("}"), i(1) }),
+          sn(nil, { t("\\sqrt["), i(1), t("]{"), t(snip.captures[1]), t("}"), i(2) }),
+        })
+      )
+    end, {}),
     { condition = tex.in_mathzone }
   ),
 }

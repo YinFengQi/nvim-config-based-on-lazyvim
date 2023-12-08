@@ -21,6 +21,12 @@ end
 
 return {
   s(
+    { trig = "td", wordTrig = true, snippetType = "autosnippet" },
+    { t("_{"), i(1), t("}"), i(0) },
+    { condition = tex.in_mathzone }
+  ),
+  --自动下标
+  s(
     { trig = "([%a%)%]%}])(%d)", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("<>_<>", {
       f(function(_, snip)
@@ -48,7 +54,7 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "(%s%a)(%a)%2", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 100 },
+    { trig = "(%a)(%a)%2", regTrig = true, wordTrig = true, snippetType = "autosnippet", priority = 100 },
     fmta("<>_<>", {
       f(function(_, snip)
         return snip.captures[1]
@@ -74,13 +80,15 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
+
   s(
     { trig = "(%d+)/", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 100 },
-    fmta("\\frac{<>}{<>}", {
+    fmta("\\frac{<>}{<>}<>", {
       f(function(_, snip)
         return snip.captures[1]
       end),
       i(1),
+      i(0),
     }),
     { condition = tex.in_mathzone }
   ),
@@ -94,7 +102,7 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
-  s(
+  s( -- 带括号的分数
     { trig = "%((.+)%)/", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("\\frac{<>}{<>}", {
       f(function(_, snip)
@@ -132,47 +140,36 @@ return {
       end),
     })
   ),
+
   s(
     { trig = "lim", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta("\\lim_{<>}", {
-      i(0),
+    c(1, {
+      sn(nil, { t("\\lim "), i(1) }),
+      sn(nil, { t("\\lim_{"), i(1, "x"), t(" \\to "), i(2, "\\infty"), t("} "), i(0) }),
     }),
     { condition = tex.in_mathzone }
   ),
-  -- s(
-  --   { trig = "sum", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-  --   fmta("\\sum\\limits_{<>}^{<>}", {
-  --     i(1),
-  --     i(0),
-  --   }),
-  --   { condition = tex.in_mathzone }
-  -- ),
   s(
     { trig = "sum", snippetType = "autosnippet" },
     c(1, {
-      sn(nil, { t("\\sum_{"), i(1), t("} ") }),
       sn(nil, { t("\\sum_{"), i(1), t("}^{"), i(2), t("} ") }),
+      sn(nil, { t("\\sum_{"), i(1), t("} ") }),
+      sn(nil, { t("\\sum"), i(1) }),
     }),
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "bot", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\bigotimes\\limits_{<>}^{<>}", {
-      i(1),
-      i(0),
+    { trig = "prod", snippetType = "autosnippet" },
+    c(1, {
+      sn(nil, { t("\\prod{"), i(1), t("}^{"), i(2), t("} ") }),
+      sn(nil, { t("\\prod{"), i(1), t("} ") }),
+      sn(nil, { t("\\prod"), i(1) }),
     }),
     { condition = tex.in_mathzone }
   ),
+
   s(
-    { trig = "pd", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta("\\prod\\limits_{<>}^{<>}", {
-      i(1),
-      i(0),
-    }),
-    { condition = tex.in_mathzone }
-  ),
-  s(
-    { trig = "bcap", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    { trig = "bnn", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
     fmta("\\bigcap\\limits_{<>}^{<>}", {
       i(1),
       i(0),
@@ -180,7 +177,7 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "bcup", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    { trig = "buu", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
     fmta("\\bigcup\\limits_{<>}^{<>}", {
       i(1),
       i(0),
@@ -189,44 +186,25 @@ return {
   ),
   s(
     { trig = "dint", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta("\\int_{<>}^{<>} <> \\mathrm{d}<> <>", {
-      i(1, "-\\infty"),
-      i(2, "+\\infty"),
-      i(3),
-      i(4, "x"),
-      i(0),
-    }),
-    { condition = tex.in_mathzone }
-  ),
-  s(
-    { trig = "2int", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\int_{<>}^{<>}\\int_{<>}^{<>} <> \\d <>\\d <>", {
-      i(1),
-      i(2),
-      i(3),
-      i(4),
-      i(5),
-      i(6),
-      i(0),
-    }),
-    { condition = tex.in_mathzone }
-  ),
-  s(
-    { trig = "iint", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\iint\\limits_{<>}^{<>} <> \\d <>", {
-      i(1, "-\\infty"),
-      i(2, "\\infty"),
-      i(3),
-      i(0),
-    }),
-    { condition = tex.in_mathzone }
-  ),
-  s(
-    { trig = "lint", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\int\\limits_{<>} <> \\d <>", {
-      i(1, "\\infty"),
-      i(2),
-      i(0),
+    c(1, {
+      sn(
+        nil,
+        fmta("\\int_{<>}^{<>} <> \\mathrm{d}<> <>", {
+          i(1, "-\\infty"),
+          i(2, "+\\infty"),
+          i(3),
+          i(4, "x"),
+          i(0),
+        })
+      ),
+      sn(
+        nil,
+        fmta("\\int <> \\mathrm{d}<> <>", {
+          i(1),
+          i(2, "x"),
+          i(0),
+        })
+      ),
     }),
     { condition = tex.in_mathzone }
   ),

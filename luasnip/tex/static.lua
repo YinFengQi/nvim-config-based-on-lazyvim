@@ -1,0 +1,51 @@
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local t = ls.text_node
+local f = ls.function_node
+local c = ls.choice_node
+local i = ls.insert_node
+local d = ls.dynamic_node
+local fmta = require("luasnip.extras.fmt").fmta
+local rep = require("luasnip.extras").rep
+local line_begin = require("luasnip.extras.expand_conditions").line_begin
+local tex = require("util.latex")
+
+return {
+  s({
+    trig = [[(?<!\\)(hbar|dagger|quad|qquad|to)]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "ecma",
+    priority = 1500,
+  }, {
+    t("\\"),
+    f(function(_, snip)
+      return snip.captures[1]
+    end),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[(?<!\\)(mu|alpha|sigma|rho|beta|Beta|gamma|delta|pi|zeta|eta|varepsilon|theta|iota|kappa|vartheta|lambda|xi|nu|pi|rho|tau|upsilon|varphi|phi|chi|psi|omega|Gamma|Delta|Theta|Lambda|Xi|Pi|Sigma|Upsilon|Phi|Psi|Omega)]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "ecma",
+  }, {
+    t("\\"),
+    f(function(_, snip)
+      return snip.captures[1]
+    end),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|arcsin|arccos|arctan|arccot|arccsc|arcsec|nabla)]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "ecma",
+  }, {
+    t("\\"),
+    f(function(_, snip)
+      return snip.captures[1]
+    end),
+  }, { condition = tex.in_mathzone }),
+}

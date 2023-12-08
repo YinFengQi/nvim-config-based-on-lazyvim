@@ -3,6 +3,6 @@
 -- Add any additional options here
 
 local opt = vim.opt
-opt.relativenumber = false
-opt.conceallevel = 0
+opt.relativenumber = true
+-- opt.conceallevel = 0
 opt.wrap = true

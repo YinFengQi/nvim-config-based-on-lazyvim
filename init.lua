@@ -3,12 +3,10 @@
 require("config.lazy")
 
 require("tokyonight").setup({
-  -- use the night style
-  -- style = "night",
-  -- disable italic for functions
   on_colors = function(colors)
-    colors.comment = "#7d86b0"
-    colors.dark5 = "#95bd75"
+    local util = require("tokyonight.util")
+    colors.comment = util.lighten(colors.comment, 0.6)
+    colors.dark5 = util.darken(colors.blue5, 0.8)
   end,
 })
 

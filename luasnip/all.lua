@@ -17,26 +17,12 @@ local tex = require("util.latex")
 --     return sn(nil, i(1))
 --   end
 -- end
-
 return {
-  s({ trig = "vsp", snippetType = "autosnippet" }, {
-    t("\\vspace{\\baselineskip}"),
-  }),
-  s("trig", {
-    i(1),
-    t("text"),
-    i(2),
-    t("text again"),
-    i(3),
-  }),
-  s({ trig = "trigger", snippetType = "autosnippet" }, {}),
   s(
-    { trig = "lim", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-    fmta("\\lim_{<>}", {
-      i(0),
-    }),
-    {
-      condition = tex.in_mathzone,
-    }
+    { trig = "snip", hidden = false, name = "test", dscr = "test2" },
+    fmta(
+      [[s( { trig = "<>", snippetType = "autosnippet" }, fmta([[<><>,{<>}), { condition = tex.in_mathzone }),<>]],
+      { i(1), i(2), t("]]"), i(3), i(0) }
+    )
   ),
 }

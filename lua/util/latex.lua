@@ -27,18 +27,18 @@ M.in_env = function(env)
   return false
 end
 
-M.in_text = function()
-  local node = ts_utils.get_node_at_cursor()
-  while node do
-    if node:type() == "text_mode" then
-      return true
-    elseif MATH_NODES[node:type()] then
-      return false
-    end
-    node = node:parent()
-  end
-  return true
-end
+-- M.in_text = function()
+--   local node = ts_utils.get_node_at_cursor()
+--   while node do
+--     if node:type() == "text_mode" then
+--       return true
+--     elseif MATH_NODES[node:type()] then
+--       return false
+--     end
+--     node = node:parent()
+--   end
+--   return true
+-- end
 
 -- M.in_mathzone = function()
 --   return not M.in_text()
@@ -47,6 +47,10 @@ end
 M.in_mathzone = function()
   -- The `in_mathzone` function requires the VimTeX plugin
   return vim.fn["vimtex#syntax#in_mathzone"]() == 1
+end
+
+M.in_text = function()
+  return not M.in_mathzone()
 end
 
 M.in_item = function()
