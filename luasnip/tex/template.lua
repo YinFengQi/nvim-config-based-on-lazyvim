@@ -32,9 +32,10 @@ end
 
 return {
   s(
-    { trig = "newfile", snippetType = "autosnippet" },
+    { trig = "newfile" },
     fmta(
       [[
+% !TeX program = xelatex
 \documentclass{<>}
 \input{<>}	% 请检查相对路径是否有效
 \title{<>}
@@ -73,6 +74,13 @@ return {
         rep(1),
       }
     ),
+    { condition = line_begin }
+  ),
+  s(
+    { trig = "root" },
+    fmta([[ % !TeX root = ./<> ]], {
+      i(0),
+    }),
     { condition = line_begin }
   ),
 

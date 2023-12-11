@@ -50,11 +50,9 @@ return {
   ),
   s(
     { trig = "(%\\%a+)dot", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\dot{<>}", {
-      f(function(_, snip)
-        return snip.captures[1]
-      end),
-    }),
+    f(function(_, snip)
+      return snip.captures[1] ~= "\\c" and "\\dot{" .. snip.captures[1] .. "}" or snip.captures[1] .. "dot"
+    end),
     { condition = tex.in_mathzone }
   ),
 

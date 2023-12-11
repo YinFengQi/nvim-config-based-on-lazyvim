@@ -51,6 +51,20 @@ end
 
 return {
   s({
+    trig = "dd",
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "pattern",
+  }, t("\\mathrm{d} "), { condition = tex.in_mathzone }),
+
+  s({
+    trig = "DD",
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "pattern",
+  }, t("\\mathcal{D} "), { condition = tex.in_mathzone }),
+
+  s({
     trig = "diff",
     snippetType = "autosnippet",
     wordTrig = true,

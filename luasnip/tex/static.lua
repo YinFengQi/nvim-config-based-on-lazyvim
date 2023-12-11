@@ -19,9 +19,8 @@ return {
     trigEngine = "ecma",
     priority = 1500,
   }, {
-    t("\\"),
     f(function(_, snip)
-      return snip.captures[1]
+      return "\\" .. snip.captures[1]
     end),
   }, { condition = tex.in_mathzone }),
 
@@ -31,21 +30,45 @@ return {
     wordTrig = true,
     trigEngine = "ecma",
   }, {
-    t("\\"),
     f(function(_, snip)
-      return snip.captures[1]
+      return "\\" .. snip.captures[1] .. " "
     end),
   }, { condition = tex.in_mathzone }),
 
   s({
-    trig = [[(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|arcsin|arccos|arctan|arccot|arccsc|arcsec|nabla)]],
+    trig = [[(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|exp|det|arcsin|arccos|arctan|arccot|arccsc|arcsec|nabla|int)]],
     snippetType = "autosnippet",
     wordTrig = true,
     trigEngine = "ecma",
   }, {
-    t("\\"),
     f(function(_, snip)
-      return snip.captures[1]
+      return "\\" .. snip.captures[1] .. " "
     end),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = "dis",
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, {
+    t("\\displaystyle"),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = "ee",
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, {
+    t("\\mathrm{e}^{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = tex.in_mathzone }),
+  s({
+    trig = "ii",
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, {
+    t("\\mathrm{i}"),
   }, { condition = tex.in_mathzone }),
 }

@@ -21,10 +21,16 @@ end
 
 return {
   s(
-    { trig = "td", wordTrig = true, snippetType = "autosnippet" },
+    { trig = "td", wordTrig = false, snippetType = "autosnippet" },
     { t("_{"), i(1), t("}"), i(0) },
     { condition = tex.in_mathzone }
   ),
+  s(
+    { trig = "tp", wordTrig = false, snippetType = "autosnippet" },
+    { t("^{"), i(1), t("}"), i(0) },
+    { condition = tex.in_mathzone }
+  ),
+
   --自动下标
   s(
     { trig = "([%a%)%]%}])(%d)", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
@@ -77,6 +83,16 @@ return {
       f(function(_, snip)
         return snip.captures[3]
       end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
+    { trig = "//", wordTrig = true, snippetType = "autosnippet", priority = 100 },
+    fmta("\\frac{<>}{<>}<>", {
+      i(1),
+      i(2),
+      i(0),
     }),
     { condition = tex.in_mathzone }
   ),
@@ -185,11 +201,11 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "dint", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    { trig = "dint", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 1500 },
     c(1, {
       sn(
         nil,
-        fmta("\\int_{<>}^{<>} <> \\mathrm{d}<> <>", {
+        fmta("\\int_{<>}^{<>} <> \\, \\mathrm{d}<> <>", {
           i(1, "-\\infty"),
           i(2, "+\\infty"),
           i(3),
@@ -199,7 +215,29 @@ return {
       ),
       sn(
         nil,
-        fmta("\\int <> \\mathrm{d}<> <>", {
+        fmta("\\int  \\, \\mathrm{d}<> <>", {
+          i(1, "x"),
+          i(0),
+        })
+      ),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "bdint", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    c(1, {
+      sn(
+        nil,
+        fmta("\\int_{<>}^{<>} \\, \\mathrm{d}<> <>", {
+          i(1, "-\\infty"),
+          i(2, "+\\infty"),
+          i(3, "x"),
+          i(0),
+        })
+      ),
+      sn(
+        nil,
+        fmta("\\int <> \\, \\mathrm{d}<> <>", {
           i(1),
           i(2, "x"),
           i(0),

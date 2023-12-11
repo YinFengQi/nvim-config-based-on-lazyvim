@@ -21,7 +21,7 @@ end
 
 return {
   s({
-    trig = [[(@\))|(1\\)|(_1\\)]],
+    trig = [[@\)]],
     snippetType = "autosnippet",
     wordTrig = false,
     trigEngine = "ecma",
@@ -33,7 +33,7 @@ return {
   }, { condition = tex.in_mathzone }),
 
   s({
-    trig = [[(@\])|(2\\)|(_2\\)]],
+    trig = [[(@\])]],
     snippetType = "autosnippet",
     wordTrig = false,
     trigEngine = "ecma",
@@ -45,7 +45,7 @@ return {
   }, { condition = tex.in_mathzone }),
 
   s({
-    trig = [[(@\})|(3\\)|(_3\\)]],
+    trig = [[(@\})]],
     snippetType = "autosnippet",
     wordTrig = false,
     trigEngine = "ecma",
