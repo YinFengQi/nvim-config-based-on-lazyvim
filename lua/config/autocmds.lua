@@ -2,7 +2,7 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
--- vim.cmd([[set conceallevel=0]])
+vim.cmd([[set conceallevel=2]])
 
 if vim.g.neovide then
   -- 这些都是neovide里面专用的东西, 除此之外
@@ -14,6 +14,8 @@ if vim.g.neovide then
   vim.g.neovide_transparency_point = 0.8
   vim.opt.linespace = 0
 end
+
+vim.cmd.sleep("10m") -- 如果没有这个延时, 信息就不能显示出来了
 
 if string.match(vim.env.PATH, "tex") then
   vim.cmd([[echo "this env has latex"]])

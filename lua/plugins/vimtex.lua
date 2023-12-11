@@ -24,6 +24,24 @@ let g:vimtex_syntax_conceal = {
           \ 'styles': 1,
           \}
 
+
+]])
+    vim.cmd([[
+let g:vimtex_compiler_latexmk = {
+        \ 'aux_dir' : '',
+        \ 'out_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
+
 ]])
   end,
 }

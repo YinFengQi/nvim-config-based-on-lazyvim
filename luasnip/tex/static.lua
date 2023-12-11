@@ -13,7 +13,7 @@ local tex = require("util.latex")
 
 return {
   s({
-    trig = [[(?<!\\)(hbar|dagger|quad|qquad|to)]],
+    trig = [[(?<!\\)(hbar|dagger|quad|qquad|to|max|min|sup|inf)]],
     snippetType = "autosnippet",
     wordTrig = true,
     trigEngine = "ecma",
@@ -21,6 +21,18 @@ return {
   }, {
     f(function(_, snip)
       return "\\" .. snip.captures[1]
+    end),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[(?<!\\)\b([a-zA-Z]+)opn]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+    trigEngine = "ecma",
+    priority = 1500,
+  }, {
+    f(function(_, snip)
+      return "\\operatorname{" .. snip.captures[1] .. "}"
     end),
   }, { condition = tex.in_mathzone }),
 
