@@ -22,3 +22,7 @@ if string.match(vim.env.PATH, "tex") then
 else
   vim.cmd([[echo "this env has no latex, restart from shell might work?"]])
 end
+
+vim.cmd([[
+set spell
+set spelllang=en,cjk]])

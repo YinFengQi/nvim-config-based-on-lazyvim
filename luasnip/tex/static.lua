@@ -13,7 +13,7 @@ local tex = require("util.latex")
 
 return {
   s({
-    trig = [[(?<!\\)(hbar|dagger|quad|qquad|to|max|min|sup|inf)]],
+    trig = [[(?<!\\)(hbar|dagger|quad|qquad|to|max|min|sup|inf|mod)]],
     snippetType = "autosnippet",
     wordTrig = true,
     trigEngine = "ecma",

@@ -57,6 +57,18 @@ return {
   }, { condition = tex.in_mathzone }),
 
   s({
+    trig = [[(@>)]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+    trigEngine = "ecma",
+  }, {
+    t("\\left< "),
+    i(1),
+    t(" \\right>"),
+    i(0),
+  }, { condition = tex.in_mathzone }),
+
+  s({
     trig = "set",
     snippetType = "autosnippet",
     wordTrig = true,

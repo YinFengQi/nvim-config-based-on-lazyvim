@@ -84,6 +84,16 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
+
+  s(
+    { trig = "(%a+)htd", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\tilde{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
   s(
     { trig = "(%\\%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
     fmta("\\vec{<>}", {
