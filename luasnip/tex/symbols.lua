@@ -13,6 +13,17 @@ local tex = require("util.latex")
 
 return {
   s({
+    trig = [[...]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("\\cdots"), { condition = tex.in_mathzone }),
+  s({
+    trig = [[+-]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("\\pm"), { condition = tex.in_mathzone }),
+
+  s({
     trig = [[EE]],
     snippetType = "autosnippet",
     wordTrig = true,

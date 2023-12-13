@@ -66,4 +66,26 @@ return {
     t(" \\}"),
     i(0),
   }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[bra]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, {
+    t("\\bra{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[ket]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, {
+    t("\\ket{"),
+    i(1),
+    t("}"),
+    i(0),
+  }, { condition = tex.in_mathzone }),
 }
