@@ -46,6 +46,6 @@ return {
     wordTrig = true,
     trigEngine = "pattern",
   }, { f(function(_, snip)
-    return "\\mathcal{" .. snip.captures[1] .. "}"
+    return "\\mathscr{" .. snip.captures[1] .. "}"
   end) }, { condition = tex.in_mathzone }),
 }

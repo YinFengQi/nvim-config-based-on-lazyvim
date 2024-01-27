@@ -27,7 +27,7 @@ return {
   ),
   s(
     { trig = "tp", wordTrig = false, snippetType = "autosnippet" },
-    { t("^{"), i(1), t("}"), i(0) },
+    { t("^{"), i(1, "2"), t("}"), i(0) },
     { condition = tex.in_mathzone }
   ),
 
@@ -170,16 +170,16 @@ return {
     c(1, {
       sn(nil, { t("\\sum_{"), i(1), t("}^{"), i(2), t("} ") }),
       sn(nil, { t("\\sum_{"), i(1), t("} ") }),
-      sn(nil, { t("\\sum"), i(1) }),
+      sn(nil, { t("\\sum "), i(1) }),
     }),
     { condition = tex.in_mathzone }
   ),
   s(
     { trig = "prod", snippetType = "autosnippet" },
     c(1, {
-      sn(nil, { t("\\prod{"), i(1), t("}^{"), i(2), t("} ") }),
-      sn(nil, { t("\\prod{"), i(1), t("} ") }),
-      sn(nil, { t("\\prod"), i(1) }),
+      sn(nil, { t("\\prod_{"), i(1), t("}^{"), i(2), t("} ") }),
+      sn(nil, { t("\\prod_{"), i(1), t("} ") }),
+      sn(nil, { t("\\prod "), i(1) }),
     }),
     { condition = tex.in_mathzone }
   ),

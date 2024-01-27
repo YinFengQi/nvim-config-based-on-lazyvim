@@ -6,6 +6,9 @@ local keymap = vim.keymap
 local Util = require("lazyvim.util")
 
 keymap.set({ "i", "s" }, "jj", "<Esc>")
+keymap.set({ "i", "s" }, "jk", "<Esc>")
+keymap.set({ "i", "s" }, "kj", "<Esc>")
+
 keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "no highlight" })
 
 -- keymap.set("i", "<c-c>", "<cmd>lua require('luasnip.extras.select_choice')()<cr>")
@@ -19,6 +22,8 @@ keymap.set("n", "<leader>uc", function()
 end, { desc = "Toggle Conceal" })
 
 keymap.set({ "i", "n", "s" }, "<c-z>", "<cmd>undo<cr>")
+
+keymap.set("i", "<c-e>", "<esc><c-e>a")
 
 -- 下面的是来自 Gilles Castel 的快速拼写修正的 keymap,
 -- "It basically jumps to the previous spelling mistake [s, then picks the first suggestion 1z=, and then jumps back `]a. The <c-g>u in the middle make it possible to undo the spelling correction quickly."

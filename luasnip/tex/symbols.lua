@@ -13,16 +13,32 @@ local tex = require("util.latex")
 
 return {
   s({
+    trig = [[oo]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("\\infty "), { condition = tex.in_mathzone }),
+
+  s({
     trig = [[...]],
     snippetType = "autosnippet",
     wordTrig = false,
-  }, t("\\cdots"), { condition = tex.in_mathzone }),
+  }, t("\\cdots "), { condition = tex.in_mathzone }),
   s({
     trig = [[+-]],
     snippetType = "autosnippet",
     wordTrig = false,
-  }, t("\\pm"), { condition = tex.in_mathzone }),
+  }, t("\\pm "), { condition = tex.in_mathzone }),
 
+  s({
+    trig = [[RR]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\mathbb{R}"), { condition = tex.in_mathzone }),
+  s({
+    trig = [[ZZ]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\mathbb{Z}"), { condition = tex.in_mathzone }),
   s({
     trig = [[EE]],
     snippetType = "autosnippet",
@@ -51,6 +67,16 @@ return {
     snippetType = "autosnippet",
     wordTrig = true,
   }, t("\\neq "), { condition = tex.in_mathzone }),
+  s({
+    trig = [[>=]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\ge "), { condition = tex.in_mathzone }),
+  s({
+    trig = [[<=]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\le "), { condition = tex.in_mathzone }),
 
   s({
     trig = [[sim]],
@@ -87,4 +113,9 @@ return {
     snippetType = "autosnippet",
     wordTrig = true,
   }, t("\\impliedby "), { condition = tex.in_mathzone }),
+  s({
+    trig = [[\le >]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\iff "), { condition = tex.in_mathzone }),
 }

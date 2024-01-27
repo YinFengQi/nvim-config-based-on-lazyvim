@@ -98,6 +98,13 @@ return {
   ),
 
   s({ trig = "(mk|km)", snippetType = "autosnippet", trigEngine = "ecma" }, fmta([[$<>$<>]], { i(1), i(0) })),
+  s(
+    { trig = "%$(%w)", wordTrig = false, snippetType = "autosnippet", trigEngine = "pattern" },
+    f(function(_, snip)
+      return "$ " .. snip.captures[1]
+    end),
+    { condition = tex.in_text }
+  ),
 
   s("list", {
     t({ "\\begin{itemize}", "\t\\item " }),

@@ -12,7 +12,7 @@ if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono Nerd Font:h14"
   vim.g.neovide_transparency = 0.6
   vim.g.neovide_transparency_point = 0.8
-  vim.opt.linespace = 0
+  vim.opt.linespace = -1
 end
 
 vim.cmd.sleep("10m") -- 如果没有这个延时, 信息就不能显示出来了

@@ -15,7 +15,7 @@ let g:vimtex_syntax_conceal = {
           \ 'fancy': 1,
           \ 'spacing': 1,
           \ 'greek': 1,
-          \ 'math_bounds': 0,
+          \ 'math_bounds': 1,
           \ 'math_delimiters': 1,
           \ 'math_fracs': 1,
           \ 'math_super_sub': 1,

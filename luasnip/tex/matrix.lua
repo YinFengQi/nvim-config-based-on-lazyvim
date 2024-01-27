@@ -45,7 +45,7 @@ return {
       return gen_mat(parent.snippet.captures[2], parent.snippet.captures[2])
     end, {}, { user_args = {} }),
     f(function(_, snip)
-      return { "\\end{" .. (snip.captures[1] ~= "m" and snip.captures[1] or "") .. "matrix}", "" }
+      return { "\\end{" .. (snip.captures[1] ~= "m" and snip.captures[1] or "") .. "matrix}" }
     end),
     i(0),
   }, { condition = tex.in_mathzone }),

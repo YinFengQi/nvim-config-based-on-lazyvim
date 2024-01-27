@@ -19,7 +19,8 @@ return {
 
       colors.fg_gutter = util.lighten(colors.fg_gutter, 0.9)
       -- fg_gutter是左侧的非光标行号, 也是高亮变量名的颜色
-      colors.dark5 = util.darken(colors.blue5, 0.8)
+      colors.dark5 = util.darken(colors.blue5, 0.6)
+      -- colors.dark5 = util.darken(colors.green, 1)
       -- dark5是conceal的显示效果, 也是光标行的行号颜色
       colors.terminal_black = util.lighten(colors.terminal_black, 0.8)
       --- terminal_black是unused的变量名显示的颜色

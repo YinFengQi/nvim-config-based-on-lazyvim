@@ -20,10 +20,15 @@ return {
     priority = 1500,
   }, {
     f(function(_, snip)
-      return "\\" .. snip.captures[1]
+      return "\\" .. snip.captures[1] .. " "
     end),
   }, { condition = tex.in_mathzone }),
 
+  s({
+    trig = [[2pi]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("2\\pi "), { condition = tex.in_mathzone }),
   s({
     trig = [[(?<!\\)\b([a-zA-Z]+)opn]],
     snippetType = "autosnippet",
@@ -63,7 +68,7 @@ return {
     snippetType = "autosnippet",
     wordTrig = true,
   }, {
-    t("\\displaystyle"),
+    t("\\displaystyle "),
   }, { condition = tex.in_mathzone }),
 
   s({

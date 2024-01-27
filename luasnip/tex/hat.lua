@@ -86,7 +86,7 @@ return {
   ),
 
   s(
-    { trig = "(%a+)htd", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    { trig = "(%a+)htd", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 1900 },
     fmta("\\tilde{<>}", {
       f(function(_, snip)
         return snip.captures[1]
@@ -95,8 +95,8 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "(%\\%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\vec{<>}", {
+    { trig = "(%\\%a+)htd", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\tilde{<>}", {
       f(function(_, snip)
         return snip.captures[1]
       end),
