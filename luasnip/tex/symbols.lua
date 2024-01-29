@@ -30,6 +30,11 @@ return {
   }, t("\\pm "), { condition = tex.in_mathzone }),
 
   s({
+    trig = [[QQ]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\mathbb{Q}"), { condition = tex.in_mathzone }),
+  s({
     trig = [[RR]],
     snippetType = "autosnippet",
     wordTrig = true,
