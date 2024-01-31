@@ -8,7 +8,7 @@ if vim.g.neovide then
   -- 这些都是neovide里面专用的东西, 除此之外
   -- 因为neovide不是在一个interactive shell里面启动的, 所以需要自己再处理一下环境变量
   -- neovide的配置在 ~/.zprofile 或者 ~/.zlogin 里面
-  vim.g.neovide_scale_factor = 1.5
+  vim.g.neovide_scale_factor = 1
   vim.o.guifont = "JetBrainsMono Nerd Font:h14"
   vim.g.neovide_transparency = 0.6
   vim.g.neovide_transparency_point = 0.8

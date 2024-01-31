@@ -29,7 +29,9 @@ keymap.set("i", "<c-e>", "<esc><c-e>a")
 -- "It basically jumps to the previous spelling mistake [s, then picks the first suggestion 1z=, and then jumps back `]a. The <c-g>u in the middle make it possible to undo the spelling correction quickly."
 keymap.set("i", "<c-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
--- 下面是来自 Gilles Castel 的图片插入代码, 见
+-- 下面是来自 Gilles Castel 的图片插入代码, 见https://github.com/gillescastel/inkscape-figures
+-- 需要注意的是, rofi 在 xorg 显示服务器上面才能正常工作.
+-- 他的另一个项目, inkscape shortcut 也需要在 xorg 服务器下运行来捕获窗口.
 keymap.set(
   "i",
   "<C-f>",

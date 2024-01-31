@@ -1,31 +1,31 @@
 --这个现在还不能使用, 当前的数学识别还依靠vimtex
 local M = {}
 
-local MATH_NODES = {
-  displayed_equation = true,
-  inline_formula = true,
-  math_environment = true,
-}
-
-local ts_utils = require("nvim-treesitter.ts_utils")
-M.test = function()
-  return true
-end
-M.in_env = function(env)
-  local node = ts_utils.get_node_at_cursor()
-  local bufnr = vim.api.nvim_get_current_buf()
-  while node do
-    if node:type() == "generic_environment" then
-      local begin = node:child(0)
-      local name = begin:field("name")
-      if name[1] and vim.treesitter.get_node_text(name[1], bufnr, nil) == "{" .. env .. "}" then
-        return true
-      end
-    end
-    node = node:parent()
-  end
-  return false
-end
+-- local MATH_NODES = {
+--   displayed_equation = true,
+--   inline_formula = true,
+--   math_environment = true,
+-- }
+--
+-- local ts_utils = require("nvim-treesitter.ts_utils")
+-- M.test = function()
+--   return true
+-- end
+-- M.in_env = function(env)
+--   local node = ts_utils.get_node_at_cursor()
+--   local bufnr = vim.api.nvim_get_current_buf()
+--   while node do
+--     if node:type() == "generic_environment" then
+--       local begin = node:child(0)
+--       local name = begin:field("name")
+--       if name[1] and vim.treesitter.get_node_text(name[1], bufnr, nil) == "{" .. env .. "}" then
+--         return true
+--       end
+--     end
+--     node = node:parent()
+--   end
+--   return false
+-- end
 
 -- M.in_text = function()
 --   local node = ts_utils.get_node_at_cursor()
@@ -65,19 +65,19 @@ M.in_quantikz = function()
   return M.in_env("quantikz")
 end
 
--- For markdown
-M.in_latex = function()
-  local node = ts_utils.get_node_at_cursor()
-  while node do
-    if node:type() == "latex_block" then
-      print(true)
-      return true
-    end
-    node = node:parent()
-  end
-  print(false)
-  return false
-end
+-- -- For markdown
+-- M.in_latex = function()
+--   local node = ts_utils.get_node_at_cursor()
+--   while node do
+--     if node:type() == "latex_block" then
+--       print(true)
+--       return true
+--     end
+--     node = node:parent()
+--   end
+--   print(false)
+--   return false
+-- end
 
 M.clean = function()
   local current_dir = vim.fn.expand("%:p:h")
