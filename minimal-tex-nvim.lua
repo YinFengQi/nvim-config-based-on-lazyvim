@@ -72,11 +72,12 @@ keymap.set({ "i", "s" }, "<c-u>", "<cmd>lua require('luasnip.extras.select_choic
 keymap.set({ "i", "s" }, "<c-n>", "<Plug>luasnip-next-choice")
 keymap.set({ "i", "s" }, "<c-p>", "<Plug>luasnip-prev-choice")
 
+keymap.set({ "i", "n" }, "<c-z>", "<cmd>undo<CR>")
 keymap.set({ "i", "n" }, "wq", "<cmd>wq<CR>")
 keymap.set({ "n" }, "j", "gj")
 keymap.set({ "n" }, "k", "gk")
 
 -- auto commands
 vim.cmd([[set ft=tex]])
-vim.cmd([[set statusline=minimal\ vim\ to\ put\ latex]])
+vim.cmd([[set statusline=put\ your\ latex\ code\ here\ \ \ \ \ \ \ \ \ \ \ \ \ \ \press\ wq\ to\ leave]])
 vim.cmd([[autocmd BufEnter * startinsert | call cursor(1, 2)]])
