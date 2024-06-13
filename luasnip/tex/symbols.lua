@@ -23,6 +23,13 @@ return {
     snippetType = "autosnippet",
     wordTrig = false,
   }, t("\\cdots "), { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[::]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("\\colon "), { condition = tex.in_mathzone }),
+
   s({
     trig = [[+-]],
     snippetType = "autosnippet",
@@ -94,6 +101,12 @@ return {
     snippetType = "autosnippet",
     wordTrig = true,
   }, t("\\simeq "), { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[~~]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+  }, t("\\approx "), { condition = tex.in_mathzone }),
 
   -- 下面是不等号
   s({

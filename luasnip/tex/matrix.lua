@@ -49,4 +49,23 @@ return {
     end),
     i(0),
   }, { condition = tex.in_mathzone }),
+
+  s({
+    trig = [[(b|p|v|m)mat:(\d)(\d)]],
+    snippetType = "autosnippet",
+    wordTrig = true,
+    trigEngine = "ecma",
+    priority = 1500,
+  }, {
+    f(function(_, snip)
+      return { "\\begin{" .. (snip.captures[1] ~= "m" and snip.captures[1] or "") .. "matrix}", "" }
+    end),
+    d(1, function(_, parent)
+      return gen_mat(parent.snippet.captures[2], parent.snippet.captures[3])
+    end, {}, { user_args = {} }),
+    f(function(_, snip)
+      return { "\\end{" .. (snip.captures[1] ~= "m" and snip.captures[1] or "") .. "matrix}" }
+    end),
+    i(0),
+  }, { condition = tex.in_mathzone }),
 }

@@ -40,7 +40,7 @@ return {
   ),
 
   s(
-    { trig = "(%a)dot", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    { trig = [[(\\?[a-zA-Z]w*({?w*})?)(dot)]], wordTrig = true, snippetType = "autosnippet", trigEngine = "ecma" },
     fmta("\\dot{<>}", {
       f(function(_, snip)
         return snip.captures[1]
@@ -77,6 +77,15 @@ return {
 
   s(
     { trig = "(%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\vec{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "(%\\%a+)hvec", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
     fmta("\\vec{<>}", {
       f(function(_, snip)
         return snip.captures[1]

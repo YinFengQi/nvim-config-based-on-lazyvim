@@ -4,6 +4,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+
     config = function()
       require("luasnip").config.set_config({
         enable_autosnippets = true,
@@ -28,6 +35,15 @@ require("lazy").setup({
         mode = "i",
       },
       {
+        "<cr>",
+        function()
+          return require("luasnip").expand_or_jumpable(1) and "<Plug>luasnip-expand-or-jump" or "<cr>"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+      {
         "<tab>",
         function()
           require("luasnip").jump(1)
@@ -46,21 +62,14 @@ require("lazy").setup({
 
   {
     "folke/tokyonight.nvim",
-    opts = {
-      -- transparent = true,
-      terminal_colors = true,
-    },
   },
+
   {
     "lervag/vimtex",
   },
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependency = { "saadparwaiz1/cmp_luasnip" },
-  -- },
 })
 
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[colorscheme tokyonight-day]]) -- habbamax, desert
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/luasnip" } })
 -- NOTE!! 这里面的 lazy_load 是重要的, 否则不会正确加载
 

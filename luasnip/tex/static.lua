@@ -68,7 +68,7 @@ return {
     snippetType = "autosnippet",
     wordTrig = true,
   }, {
-    t("\\displaystyle "),
+    t("\\displaystyle jj"),
   }, { condition = tex.in_mathzone }),
 
   s({

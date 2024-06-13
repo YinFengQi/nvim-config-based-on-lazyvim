@@ -4,5 +4,5 @@
 
 local opt = vim.opt
 opt.relativenumber = true
--- opt.conceallevel = 0
+opt.conceallevel = 0
 opt.wrap = true
