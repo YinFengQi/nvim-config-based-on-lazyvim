@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+-- 这部分不打算使用了
 return {
   "folke/tokyonight.nvim",
   opts = {
