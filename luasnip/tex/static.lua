@@ -25,11 +25,6 @@ return {
   }, { condition = tex.in_mathzone }),
 
   s({
-    trig = [[2pi]],
-    snippetType = "autosnippet",
-    wordTrig = false,
-  }, t("2\\pi "), { condition = tex.in_mathzone }),
-  s({
     trig = [[(?<!\\)\b([a-zA-Z]+)opn]],
     snippetType = "autosnippet",
     wordTrig = false,

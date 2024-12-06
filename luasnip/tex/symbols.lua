@@ -19,6 +19,12 @@ return {
   }, t("\\infty "), { condition = tex.in_mathzone }),
 
   s({
+    trig = [[xx]],
+    snippetType = "autosnippet",
+    wordTrig = false,
+  }, t("\\times "), { condition = tex.in_mathzone }),
+
+  s({
     trig = [[...]],
     snippetType = "autosnippet",
     wordTrig = false,

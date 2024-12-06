@@ -1,3 +1,4 @@
+local ls = require("luasnip")
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -14,14 +15,14 @@ return {
       delete_check_events = "TextChanged",
     },
     config = function()
-      require("luasnip").config.set_config({
+      ls.config.set_config({
         enable_autosnippets = true,
         store_selection_keys = "`",
       })
       require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/luasnip" } })
 
-      local auto_expand = require("luasnip").expand_auto
-      require("luasnip").expand_auto = function(...)
+      local auto_expand = ls.expand_auto
+      ls.expand_auto = function(...)
         vim.o.undolevels = vim.o.undolevels
         auto_expand(...)
       end

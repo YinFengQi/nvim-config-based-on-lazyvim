@@ -148,14 +148,15 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
-  s(
-    { trig = "\\%)(%a)", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
-    fmta("\\) <>", {
-      f(function(_, snip)
-        return snip.captures[1]
-      end),
-    })
-  ),
+  -- 这个是为了让\(\)的行内公式后接的单词自动空格
+  -- s(
+  --   { trig = "\\%)(%a)", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+  --   fmta("\\) <>", {
+  --     f(function(_, snip)
+  --       return snip.captures[1]
+  --     end),
+  --   })
+  -- ),
 
   s(
     { trig = "lim", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
