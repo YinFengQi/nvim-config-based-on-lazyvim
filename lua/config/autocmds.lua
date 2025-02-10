@@ -2,8 +2,6 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
-vim.o.conceallevel = 2
-
 if vim.g.neovide then
   -- 这些都是neovide里面专用的东西, 除此之外
   -- 因为neovide不是在一个interactive shell里面启动的, 所以需要自己再处理一下环境变量
@@ -24,3 +22,6 @@ end
 vim.cmd([[
 set spell
 set spelllang=en,cjk]])
+
+vim.cmd([[let $http_proxy='127.0.0.1:7890'
+let $http_proxy='127.0.0.1:7890']])
